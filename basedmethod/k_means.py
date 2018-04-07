@@ -113,6 +113,7 @@ def main(train_file):
     train1 = np.array(clusters[1])
     train2 = np.array(clusters[2])
     train3 = np.array(clusters[3])
+    file = open('label.txt', 'w')
     for i in range(len(labels)):
     	file.write("%s\n" %(str(labels[i])))
     file.close()
