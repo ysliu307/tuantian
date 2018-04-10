@@ -1,0 +1,6 @@
+data/
+exp/
+octave/
+img/
+*.pyc
+*.un~
