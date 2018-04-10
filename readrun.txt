@@ -1,0 +1,11 @@
+先跑python k_means_cuckoo 得到新的labels
+然后跑python k_cluster 得到分的k个train文件和k个test文件
+最后跑slim文件得到k组正确率（目前k是4，需要修改）
+
+我们要做的工作
+1.取k为1，2，4，8，16得到的误码率
+2.改变不同的test和train分配（10%-50%）
+3.改变不同gu（0.01-0.99）
+4.跑k_means和k_means_cuckoo看提高
+
+注意：每次跑完删掉labels和k个test和k个train
