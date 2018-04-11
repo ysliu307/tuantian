@@ -25,14 +25,23 @@ def compute_precision(recommendations, test_file):
     total_users = Decimal(len(recommendations.keys()))
     for at in range(1, PRECISION_AT+1):
         mean = 0
+        hits = 0
+        pos = 0
         for u in recommendations.keys():
             relevants = user_item[u]
             retrieved = recommendations[u][:at]
+            if len(relevants & set(retrieved)) == 1:
+                pos += 1 / (retrieved.index(list(relevants)[0]) + 1)
+                hits += 1
 #            print(len(retrieved))
             precision = len(relevants & set(retrieved))/Decimal(len(retrieved))
             mean += precision
-
-        print ('Average Precision @%s: %s' % (at, (mean/total_users)))
+        HR = hits / total_users
+        ARHR = pos / float(total_users)
+        if at == 5 or at == 10 or at == 15 or at == 20:
+            #print ('Average Precision @%s: %s' % (at, (mean/total_users)))
+            print ('Average HR @%s: %s' % (at, HR))
+            print ('Average ARHR @%s: %s' % (at, ARHR))
         precisions.append([at, (mean/total_users)])
 
     return precisions
